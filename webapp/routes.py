@@ -174,7 +174,7 @@ def delete_assignment(course_id,assignment_id):
     db.session.delete(assignment)  # delete from the database the assignment
     db.session.commit()
     flash('Your assignment has been deleted!', 'success')
-    return redirect(url_for('course', course_id=course.id))
+    return redirect(url_for('course_assignments', course_id=course.id))
 
 @app.route("/course/<course_id>/assignment/<assignment_id>/complete",methods=['GET','POST'])
 @login_required
@@ -329,7 +329,7 @@ def update_resource(course_id,resource_id):
 @login_required
 def delete_resource(course_id,resource_id):
     course = Course.query.get_or_404(course_id)
-    resource = StudyTime.query.get_or_404(resource_id)
+    resource = Resource.query.get_or_404(resource_id)
     db.session.delete(resource)  # delete resource from database
     db.session.commit()
     flash('Your resource has been deleted!', 'success')
