@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    <article class="media content-section">
+<!--        the user is logged in-->
+      {% if user.is_authenticated %}
+        <h4>Welcome back, {{user.username}}! </h4>
+        {% else %}
+        Welcome!
+      {% endif %}
+    </article>
+{% endblock content %}

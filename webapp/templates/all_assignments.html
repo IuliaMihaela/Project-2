@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+<!--  we loop through all courses-->
+  {% for course in courses %}
+<!--  we loop through all assignments of the course-->
+    {% for assignment in course.assignments %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <div><a class="mr-2">{{ assignment.id }} </a>
+<!--                if the assignment is completed ( has the date not NULL)-->
+              {% if assignment.completion_date %}
+                <div class="text-right text-success">Completed</div>
+              </div>
+              {% endif %}
+            </div>
+            <h2><a class="article-title" href="{{ url_for('assignment', course_id=course.id, assignment_id=assignment.id) }}">{{ assignment.name }}</a></h2>
+            <p class="article-content">deadline: {{ assignment.deadline }}</p>
+            <p class="article-content"><a href="{{ url_for('course', course_id=course.id) }}">course: {{ course.name }}</a></p>
+          </div>
+        </article>
+    {% endfor %}
+  {% endfor %}
+
+</div>
+{% endblock content %}

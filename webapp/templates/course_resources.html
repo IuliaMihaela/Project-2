@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div>
+    <h4 class="info" >{{course.id}}</h4>
+<!--    we loop through the course's resources-->
+  {% for resource in course.resources %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ resource.id }}</a>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('resource',course_id=resource.course_id, resource_id=resource.id) }}">{{ resource.name }}</a></h2>
+          </div>
+        </article>
+  {% endfor %}
+</div>
+
+{% endblock content %}
